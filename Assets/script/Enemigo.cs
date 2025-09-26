@@ -17,7 +17,8 @@ public class Enemigo : MonoBehaviour
     public Image BarraDeVida;
     public MunicionEscopeta MunicionEscopeta;
     private Vector2 direccion;
-    private Coroutine dañoContinuo;
+    public float probabilidadDeSpawneo;
+    //private Coroutine dañoContinuo;
 
     // aplicando daño cada cierto tiempo.
     private int cantidadDeDaño = 10;

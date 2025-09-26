@@ -55,6 +55,7 @@ MonoBehaviour:
   danio: 25
   BarraDeVida: {fileID: 4691169914805903420}
   MunicionEscopeta: {fileID: 8237426028018198875, guid: ba72be49fbce6154b90bc5eba9172e9d, type: 3}
+  probabilidadDeSpawneo: 0.5
 --- !u!212 &6501627925336126664
 SpriteRenderer:
   m_ObjectHideFlags: 0

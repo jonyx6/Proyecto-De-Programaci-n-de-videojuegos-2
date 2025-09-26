@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Timer tiempo;
     [SerializeField] private Spawner spawner;
     public float tiempoParaAumentarEnemigos;
+    public GameObject menuPausa;
+    private bool juegoPausado = false;
 
     // HUD
     [SerializeField] private Arma unArma;
@@ -71,14 +73,47 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+    public void Reanudar()
+    {
+        menuPausa.SetActive(false);
+        Time.timeScale = 1;
+        juegoPausado = false;
+    }
+
+    public void Pausar()
+    {
+        menuPausa.SetActive(true);
+        Time.timeScale = 0;
+        juegoPausado = true;
+    }
+
     private void Update()
     {
         textoDeLaBala.text = unArma.cantDeBalas.ToString();
         textoDeMunicion.text = Personaje.cantDeMunicion.ToString();
         textoEnemigosDerrotados.text = enemigosDerrotados.ToString();
         textoOleadas.text = oleadaActual.ToString();
+        PausarSiElBotonFuePrecionado();
         AumentarOleadas();
     }
+
+    public void PausarSiElBotonFuePrecionado()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (juegoPausado)
+            {
+                Reanudar();
+            }
+            else
+            {
+                Pausar();
+            }
+        }
+    }
+
 
     void AumentarOleadas()
     {

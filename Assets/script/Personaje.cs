@@ -40,6 +40,25 @@ public class Personaje : MonoBehaviour
        
         
     }
+    //funcion que evita que el personaje salga de la pantalla
+
+    void LateUpdate()
+    {
+        Camera cam = Camera.main;
+        float altura = cam.orthographicSize * 2f;
+        float ancho = altura * cam.aspect;
+
+        float minX = cam.transform.position.x - ancho / 2f;
+        float maxX = cam.transform.position.x + ancho / 2f;
+        float minY = cam.transform.position.y - altura / 2f;
+        float maxY = cam.transform.position.y + altura / 2f;
+
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        transform.position = pos;
+    }
+
 
     void CambiarAnimacion(Vector2 unaDireccion)
     {
