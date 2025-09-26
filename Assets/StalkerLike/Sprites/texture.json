@@ -1,0 +1,39 @@
+{
+  "frames": {
+    "Bandit2.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 174,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 8,
+        "y": 9,
+        "w": 174,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 192,
+        "h": 96
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "texture.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 174,
+      "h": 80
+    },
+    "scale": 1
+  }
+}
