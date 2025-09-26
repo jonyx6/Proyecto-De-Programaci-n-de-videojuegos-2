@@ -56,7 +56,7 @@ public class Enemigo : MonoBehaviour
 
     void Muerte()
     {
-        float probabilidadDeSpawneo = 0.3f;
+        //float probabilidadDeSpawneo = 0.3f;
         GameManager.Instance.EnemigoDerrotado();
 
         if (UnityEngine.Random.value < probabilidadDeSpawneo)

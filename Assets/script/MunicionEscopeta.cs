@@ -10,6 +10,8 @@ public class MunicionEscopeta : MonoBehaviour
     void Start()
     {
         valorPorCaja = 1;
+
+        Destroy(gameObject,10f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

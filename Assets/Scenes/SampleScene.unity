@@ -270,6 +270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textoDelTimer: {fileID: 1874270960}
+  minutos: 4
+  segundos: 0
+  centecimas: 0
 --- !u!1 &158700453
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0563bf0f9a2e946ab8645aee7efbbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   VidaMaxima: 100
   Vida: 0
   BarraDeVida: {fileID: 1606189524}

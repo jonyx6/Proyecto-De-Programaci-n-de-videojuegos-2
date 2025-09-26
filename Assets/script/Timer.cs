@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField]private TMP_Text textoDelTimer;
     private float cuentaDeTiempo;
-    private int minutos, segundos, centecimas;
+    public int minutos, segundos, centecimas;
     public float Segundos => cuentaDeTiempo;
 
     public void Update()

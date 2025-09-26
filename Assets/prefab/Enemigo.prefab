@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305e9f4b35fd07b4daec9fcff51a180c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   VidaMaxima: 100
   sd: {fileID: 0}
   danio: 25
