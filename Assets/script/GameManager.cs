@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+
+
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class GameManager : MonoBehaviour
     public float tiempoParaAumentarEnemigos;
     public GameObject menuPausa;
     private bool juegoPausado = false;
+    public GameObject gameOverPanel;
+
+    // barra De Resignacion 
+    private float cantDeResignacion = 0;
+    [SerializeField] private Image barraDeResiganacion;
+    public float velocidadDeResignacion = 0.2f;
 
     // HUD
     [SerializeField] private Arma unArma;
@@ -26,6 +33,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Personaje Personaje;
     [SerializeField] private TMP_Text textoEnemigosDerrotados;
     [SerializeField] private TMP_Text textoOleadas;
+
+    //gameover text
+
+    [SerializeField] private TMP_Text gamaOverEnemigosDerrotados;
+    [SerializeField] private TMP_Text gameOverOleadas;
+
+
 
 
 
@@ -40,7 +54,7 @@ public class GameManager : MonoBehaviour
         }
 
         // no se destruye en las cargas de la escena , cuando cambiamos de escena o iniciamos la misma no destruimos el game manager
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
     }
     // metodo de prueba , borrar al finalizar su uso!!!!
     public void GameOver()
@@ -68,11 +82,78 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Oleada " + oleadaActual + " iniciada.");
+            spawner.maxEnemigos *= 2;
             tiempoParaAumentarEnemigos = 60.0F;
 
         }
     }
 
+    void AumentarResignacion()
+    {
+        if (MunicionEscasa())
+        {
+            IncrementarBarra();
+
+            DetenerPersonajeSiLaBarraSeLLeno();
+
+        }
+        else if (Personaje.cantDeMunicion > 3)
+        {
+            DisminuirBarra();
+        }
+        else if (Personaje.cantDeMunicion ==3)
+        {
+            DetenerBarra();
+        }    
+    }
+    
+
+    void IncrementarBarra()
+    {
+        cantDeResignacion += Time.deltaTime * velocidadDeResignacion; // en este momento son 2 segundos pero se puede cambiar en el inspector
+
+        cantDeResignacion = Mathf.Clamp01(cantDeResignacion);// asegura que no pase de 1.
+
+        barraDeResiganacion.fillAmount = cantDeResignacion;
+    }
+
+    void DetenerPersonajeSiLaBarraSeLLeno()
+    {
+        if (cantDeResignacion >= 1f)
+        {
+            Personaje.puedeMoverse = false;
+            Debug.Log("El personaje se ha resignado.");
+
+        }
+    }
+
+    void DetenerBarra()
+    {
+        barraDeResiganacion.fillAmount = cantDeResignacion;
+    }
+    void DisminuirBarra()
+    {
+        barraDeResiganacion.fillAmount = cantDeResignacion;
+        cantDeResignacion -= Time.deltaTime * velocidadDeResignacion;
+    }
+
+
+    // sin uso actualmente 
+    bool SinBalas()
+    {
+        return unArma.cantDeBalas  == 0;
+    }
+
+    bool MunicionEscasa()
+    {
+        return Personaje.cantDeMunicion <= 2;
+    }
+
+   
+    public void Reiniciar()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
 
     public void Reanudar()
@@ -89,14 +170,39 @@ public class GameManager : MonoBehaviour
         juegoPausado = true;
     }
 
+    public void Salir()
+    {
+        Debug.Log("saliendo del juego");
+        Application.Quit();
+    }
+
+    // update
     private void Update()
     {
         textoDeLaBala.text = unArma.cantDeBalas.ToString();
         textoDeMunicion.text = Personaje.cantDeMunicion.ToString();
         textoEnemigosDerrotados.text = enemigosDerrotados.ToString();
         textoOleadas.text = oleadaActual.ToString();
+        gameOverOleadas.text = oleadaActual.ToString();
+        gamaOverEnemigosDerrotados.text = enemigosDerrotados.ToString();
         PausarSiElBotonFuePrecionado();
+        ActivarGameOverSiElPersonajeMurio();
         AumentarOleadas();
+        AumentarResignacion();
+    }
+
+    public void ActivarGameOverSiElPersonajeMurio()
+    {
+        if (Personaje.Vida < 1)
+        {
+            MostrarGameOver();
+            
+        }
+    }
+
+    void MostrarGameOver()
+    {
+        gameOverPanel.SetActive(true);
     }
 
     public void PausarSiElBotonFuePrecionado()
@@ -113,6 +219,11 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+
+
+
+
 
 
     void AumentarOleadas()

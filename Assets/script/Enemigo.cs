@@ -17,12 +17,12 @@ public class Enemigo : MonoBehaviour
     public Image BarraDeVida;
     public MunicionEscopeta MunicionEscopeta;
     private Vector2 direccion;
-    public float probabilidadDeSpawneo;
+    public float probabilidadDeSpawneoDeItem;
     //private Coroutine dañoContinuo;
 
     // aplicando daño cada cierto tiempo.
     private int cantidadDeDaño = 10;
-    private float tiempoPararVolverAGenerarDaño = 3f;
+    public float tiempoPararVolverAGenerarDaño ;
     private bool estaColisionando = false ;
     private float tiempoQuePasoDesdeElUltimoDaño = 0f;
     void Start()
@@ -59,7 +59,7 @@ public class Enemigo : MonoBehaviour
         //float probabilidadDeSpawneo = 0.3f;
         GameManager.Instance.EnemigoDerrotado();
 
-        if (UnityEngine.Random.value < probabilidadDeSpawneo)
+        if (UnityEngine.Random.value < probabilidadDeSpawneoDeItem)
         {
             Instantiate(MunicionEscopeta, transform.position, Quaternion.identity);
         }

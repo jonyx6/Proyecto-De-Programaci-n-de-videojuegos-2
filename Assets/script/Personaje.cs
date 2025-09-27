@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +13,9 @@ public class Personaje : MonoBehaviour
     private Animator aPersonaje;
     private bool estaVivo =  true;
     public  int cantDeMunicion;
+    public bool puedeMoverse = true;
+    private Vector2 direccion;
+
 
     private void Start()
     {
@@ -29,17 +31,35 @@ public class Personaje : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (puedeMoverse)
+        {
             float inputHorizontal = Input.GetAxisRaw("Horizontal");
+            float inputVertical = Input.GetAxisRaw("Vertical");
+            direccion = new Vector2(inputHorizontal, inputVertical).normalized;
+            rbPersonaje.velocity = direccion * speed;
+            DirecionDeAnimacion(direccion);
+            CambiarAnimacion(direccion);
+
+        }
+        else
+        {
+            rbPersonaje.velocity= Vector2.zero;
+            direccion = Vector2.zero;
+        }
+
+
+           /* float inputHorizontal = Input.GetAxisRaw("Horizontal");
             float inputVertical = Input.GetAxisRaw("Vertical");
             Vector2 direccion = new Vector2(inputHorizontal, inputVertical).normalized;
             rbPersonaje.velocity = direccion * speed;
             DirecionDeAnimacion(direccion);
-            CambiarAnimacion(direccion);
+            CambiarAnimacion(direccion);*/
      
        
         
     }
+
+
     //funcion que evita que el personaje salga de la pantalla
 
     void LateUpdate()
@@ -60,7 +80,7 @@ public class Personaje : MonoBehaviour
     }
 
 
-    void CambiarAnimacion(Vector2 unaDireccion)
+    public void CambiarAnimacion(Vector2 unaDireccion)
     {
         if(unaDireccion.x !=0f || unaDireccion.y != 0f)
         {
