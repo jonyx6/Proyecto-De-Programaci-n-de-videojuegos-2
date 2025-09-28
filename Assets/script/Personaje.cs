@@ -1,4 +1,5 @@
 
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,8 +44,11 @@ public class Personaje : MonoBehaviour
         }
         else
         {
-            rbPersonaje.velocity= Vector2.zero;
-            direccion = Vector2.zero;
+            
+                rbPersonaje.velocity = Vector2.zero;
+                direccion = Vector2.zero;
+
+            
         }
 
 

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPausa;
     private bool juegoPausado = false;
     public GameObject gameOverPanel;
+    public Enemigo audioEnemigo;
 
     // barra De Resignacion 
     private float cantDeResignacion = 0;
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameOverOleadas;
 
 
+    // audio
+    //private AudioSource aSource;
+
 
 
 
@@ -53,10 +57,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // no se destruye en las cargas de la escena , cuando cambiamos de escena o iniciamos la misma no destruimos el game manager
-       // DontDestroyOnLoad(gameObject);
+        AudioListener.pause = false;
+
+
     }
-    // metodo de prueba , borrar al finalizar su uso!!!!
+    
     public void GameOver()
     {
        
@@ -95,16 +100,28 @@ public class GameManager : MonoBehaviour
             IncrementarBarra();
 
             DetenerPersonajeSiLaBarraSeLLeno();
+            Debug.Log("barra aumentando");
 
         }
-        else if (Personaje.cantDeMunicion > 3)
+
+        if (Personaje.cantDeMunicion > 3)
         {
+            Debug.Log("la barra se disminuye");
             DisminuirBarra();
         }
-        else if (Personaje.cantDeMunicion ==3)
+
+        if (Personaje.cantDeMunicion == 3)
         {
+            Debug.Log("la barra Se Detuvo");
             DetenerBarra();
-        }    
+
+        }
+        
+        if (instanciaPersonaje.cantDeMunicion < 1 && unArma.cantDeBalas == 0)
+        {
+            Debug.Log("velocidad DE resignacin aumentada");
+            this.velocidadDeResignacion += 0.0001f;
+        }
     }
     
 
@@ -153,6 +170,7 @@ public class GameManager : MonoBehaviour
     public void Reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
 
@@ -161,6 +179,7 @@ public class GameManager : MonoBehaviour
         menuPausa.SetActive(false);
         Time.timeScale = 1;
         juegoPausado = false;
+        AudioListener.pause = false;
     }
 
     public void Pausar()
@@ -168,6 +187,7 @@ public class GameManager : MonoBehaviour
         menuPausa.SetActive(true);
         Time.timeScale = 0;
         juegoPausado = true;
+        AudioListener.pause = true;
     }
 
     public void Salir()
@@ -196,6 +216,7 @@ public class GameManager : MonoBehaviour
         if (Personaje.Vida < 1)
         {
             MostrarGameOver();
+
             
         }
     }
@@ -203,6 +224,7 @@ public class GameManager : MonoBehaviour
     void MostrarGameOver()
     {
         gameOverPanel.SetActive(true);
+        AudioListener.pause = true;
     }
 
     public void PausarSiElBotonFuePrecionado()

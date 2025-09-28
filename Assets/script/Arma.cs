@@ -13,10 +13,13 @@ public class Arma : MonoBehaviour
     public int cantDeBalas;
     [SerializeField] private Personaje personaje;
 
+    private AudioSource audioDisparo;
+
     void Start()
     {
         m_Camera = Camera.main;
         srArma = GetComponent<SpriteRenderer>();
+        audioDisparo = GetComponent<AudioSource>(); 
 
     }
 
@@ -37,6 +40,7 @@ public class Arma : MonoBehaviour
         if (cantDeBalas >0)
         {
             Disparar(unaPosicionDeTiro,unaBala);
+            
         }
 
     }
@@ -46,9 +50,11 @@ public class Arma : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            audioDisparo.Play();
             Bala balaInstanciada = Instantiate(unaBala, unaPosicionDeTiro.position, transform.rotation);
             balaInstanciada.LanzarBala(transform.right);
             cantDeBalas--;
+            
         }
     }
 

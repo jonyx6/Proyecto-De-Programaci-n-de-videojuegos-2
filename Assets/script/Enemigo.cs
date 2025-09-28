@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Random = UnityEngine.Random;
 public class Enemigo : MonoBehaviour
 {
     public float speed;
@@ -18,7 +18,8 @@ public class Enemigo : MonoBehaviour
     public MunicionEscopeta MunicionEscopeta;
     private Vector2 direccion;
     public float probabilidadDeSpawneoDeItem;
-    //private Coroutine dañoContinuo;
+    private AudioSource aSource;
+    public AudioClip[] sonidos;
 
     // aplicando daño cada cierto tiempo.
     private int cantidadDeDaño = 10;
@@ -30,7 +31,20 @@ public class Enemigo : MonoBehaviour
         Vida = VidaMaxima;
         objtivo = GameObject.FindGameObjectWithTag("Personaje");
         rb = GetComponent<Rigidbody2D>();
-        SpriteRendererEnemy = GetComponent<SpriteRenderer>(); // ✅ Asignación correcta
+        SpriteRendererEnemy = GetComponent<SpriteRenderer>(); 
+        aSource = GetComponent<AudioSource>();  
+        //aSource.Play();
+        ReproducirSonidoAleatorio();
+    }
+
+
+    public void ReproducirSonidoAleatorio()
+    {
+        if (sonidos.Length == 0) return;
+
+        int index = Random.Range(0, sonidos.Length);
+        aSource.clip = sonidos[index];
+        aSource.Play();
     }
 
     public void RecibirDanio(float danio)
