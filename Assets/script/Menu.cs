@@ -6,8 +6,19 @@ using System;
 
 public class Menu : MonoBehaviour
 {
+    public AudioSource aMenu;
+
+    void Awake()
+    {
+        aMenu = GetComponent<AudioSource>();
+        if (aMenu != null)
+            aMenu.Play();
+        else
+            Debug.LogWarning("AudioSource no encontrado en el objeto Menu.");
+    }
     public void Jugar()
     {
+        aMenu.Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

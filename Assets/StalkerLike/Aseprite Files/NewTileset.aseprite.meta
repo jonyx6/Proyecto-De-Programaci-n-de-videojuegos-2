@@ -72,7 +72,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 2
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -85,7 +85,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 2
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -133,7 +133,7 @@ ScriptedImporter:
       y: 4
       width: 144
       height: 160
-    spriteID: 4f086b25da6be124196b68c3bff50dd8
+    spriteID: 93583d1601811ca498ccabbfc4226301
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,13 +146,13 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1036912816
+      value0: 4287466680
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: NewTileset
-    layerFlags: 0
+    name: Layer 1
+    layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
@@ -164,7 +164,7 @@ ScriptedImporter:
         y: 0
         width: 144
         height: 160
-      spriteId: 4f086b25da6be124196b68c3bff50dd8
+      spriteId: 93583d1601811ca498ccabbfc4226301
     linkedCells: []
     parentIndex: -1
   platformSettings:

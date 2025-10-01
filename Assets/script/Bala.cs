@@ -16,7 +16,7 @@ public class Bala : MonoBehaviour
         tiempoDeDestruccion = 5f;
     }
 
-    //a este metodo lo va a llamar desde el scritp del cañon por eso lo puse en public
+    //a este metodo lo va a llamar desde el scritp del caï¿½on por eso lo puse en public
 
     public void LanzarBala(Vector2 direccion)
     {

@@ -1,7 +1,5 @@
 
 using TMPro;
-
-
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -20,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPausa;
     private bool juegoPausado = false;
     public GameObject gameOverPanel;
+    public GameObject victoriaPanel;
     public Enemigo audioEnemigo;
 
     // barra De Resignacion 
@@ -39,6 +38,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text gamaOverEnemigosDerrotados;
     [SerializeField] private TMP_Text gameOverOleadas;
+
+    // victoria text
+
+    [SerializeField] private TMP_Text victoriaEnemigosDerrotados;
+    [SerializeField] private TMP_Text victoriaOleadas;
+
 
 
     // audio
@@ -83,11 +88,13 @@ public class GameManager : MonoBehaviour
         {
             juegoActivo = false;
             Debug.Log("¡Ganaste! Completaste todas las oleadas.");
+            victoriaPanel.SetActive(true);
+            AudioListener.pause = true;
         }
         else
         {
             Debug.Log("Oleada " + oleadaActual + " iniciada.");
-            spawner.maxEnemigos *= 2;
+            spawner.maxEnemigos += 2;
             tiempoParaAumentarEnemigos = 60.0F;
 
         }
@@ -205,6 +212,8 @@ public class GameManager : MonoBehaviour
         textoOleadas.text = oleadaActual.ToString();
         gameOverOleadas.text = oleadaActual.ToString();
         gamaOverEnemigosDerrotados.text = enemigosDerrotados.ToString();
+        victoriaEnemigosDerrotados.text = enemigosDerrotados.ToString();
+        victoriaOleadas.text = oleadaActual.ToString();
         PausarSiElBotonFuePrecionado();
         ActivarGameOverSiElPersonajeMurio();
         AumentarOleadas();

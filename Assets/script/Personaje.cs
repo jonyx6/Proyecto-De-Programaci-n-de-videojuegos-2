@@ -37,7 +37,7 @@ public class Personaje : MonoBehaviour
             float inputHorizontal = Input.GetAxisRaw("Horizontal");
             float inputVertical = Input.GetAxisRaw("Vertical");
             direccion = new Vector2(inputHorizontal, inputVertical).normalized;
-            rbPersonaje.velocity = direccion * speed;
+            rbPersonaje.velocity= direccion * speed;
             DirecionDeAnimacion(direccion);
             CambiarAnimacion(direccion);
 

@@ -6,12 +6,12 @@ using UnityEngine.Rendering;
 public class MunicionEscopeta : MonoBehaviour
 {
     
-    private int valorPorCaja;
+    
     public float velocidadDeDestruccion;
 
     void Start()
     {
-        valorPorCaja = 1;
+        
 
         Destroy(gameObject,velocidadDeDestruccion);
     }

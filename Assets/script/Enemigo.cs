@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 using Random = UnityEngine.Random;
 public class Enemigo : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class Enemigo : MonoBehaviour
     public AudioClip[] sonidos;
 
     // aplicando daño cada cierto tiempo.
-    private int cantidadDeDaño = 10;
     public float tiempoPararVolverAGenerarDaño ;
     private bool estaColisionando = false ;
     private float tiempoQuePasoDesdeElUltimoDaño = 0f;
@@ -33,13 +33,15 @@ public class Enemigo : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SpriteRendererEnemy = GetComponent<SpriteRenderer>(); 
         aSource = GetComponent<AudioSource>();  
-        //aSource.Play();
+       
         ReproducirSonidoAleatorio();
     }
 
 
     public void ReproducirSonidoAleatorio()
     {
+        // se le puede agregar mas sonidos al zombi y reproducirlo de manera aleatoria
+
         if (sonidos.Length == 0) return;
 
         int index = Random.Range(0, sonidos.Length);
@@ -77,8 +79,10 @@ public class Enemigo : MonoBehaviour
         {
             Instantiate(MunicionEscopeta, transform.position, Quaternion.identity);
         }
+        aSource.mute = true;   
         Destroy(gameObject);
         sd.RestarEnemigo();
+        
     }
 
 

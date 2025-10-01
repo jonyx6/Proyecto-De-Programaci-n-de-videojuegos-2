@@ -72,7 +72,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 2
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -85,7 +85,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 2
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -133,7 +133,7 @@ ScriptedImporter:
       y: 4
       width: 13
       height: 18
-    spriteID: 78d7f00a17d2a7c45a85e717254c675a
+    spriteID: 8a0116e42704c8f4cad29ca83eb3b95c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,7 +164,7 @@ ScriptedImporter:
         y: 62
         width: 13
         height: 18
-      spriteId: 78d7f00a17d2a7c45a85e717254c675a
+      spriteId: 8a0116e42704c8f4cad29ca83eb3b95c
     linkedCells: []
     parentIndex: -1
   platformSettings:
